@@ -1,21 +1,19 @@
 package com.first.newCrud.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity(name = "product")
 @Table(name = "product")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
     private String name;
-    private Long price;
+    private BigDecimal price;
 }

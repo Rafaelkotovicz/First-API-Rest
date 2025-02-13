@@ -1,4 +1,6 @@
 package com.first.newCrud.dtos;
 
-public record ProductDto(String name, Long price) {
+import java.math.BigDecimal;
+
+public record ProductDto(String name, BigDecimal price) {
 }

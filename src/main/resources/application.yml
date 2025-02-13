@@ -6,4 +6,4 @@ spring:
     password: RafaAdmin21.
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update

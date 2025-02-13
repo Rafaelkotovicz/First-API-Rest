@@ -1,8 +1,10 @@
 package com.first.newCrud.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.first.newCrud.dtos.ProductDto;
 import com.first.newCrud.model.Product;
 import com.first.newCrud.repository.ProductRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ public class ProductController {
     ProductRepository repository;
 
     @GetMapping
-    public ResponseEntity getAll(){
+    public ResponseEntity<?> getAll(){
         List<Product> listProducts = repository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(listProducts);
     }
@@ -35,10 +37,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody ProductDto dto){
-        var product = new Product();
-        BeanUtils.copyProperties(dto, product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(product));
+    public ResponseEntity<?> save(@RequestBody ProductDto dto){
+        Product product = new Product();
+        product.setName(dto.name());
+        product.setPrice(dto.price());
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(repository.save(product));
     }
 
     @DeleteMapping("/{id}")
