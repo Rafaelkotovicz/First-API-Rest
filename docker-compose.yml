@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db-tio
+    environment:
+       - POSTGRES_DB=product-api
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=RafaAdmin21.
+    ports:
+       - '5433:5432'
